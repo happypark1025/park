@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Park Status Map</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts/dist/apexcharts.css" />
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+            margin: 0;
+        }
+        #charts {
+            flex: 1;
+            max-width: 50%;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        #park-chart, #neighborhood-park-chart {
+            flex: 1;
+            margin: 10px;
+        }
+        #map {
+            flex: 2;
+            height: 70%;
+        }
+        #park-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="charts">
+        <div id="park-chart"></div>
+        <div id="neighborhood-park-chart"></div>
+    </div>
+    <div id="map"></div>
+    <div id="park-list"></div>
+    <script src="geojson_data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

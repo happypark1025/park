@@ -1,0 +1,19 @@
+/* 設定地圖的高度 */
+#map {
+    height: 500px;
+    width: 100%;
+}
+
+/* 設定圖表的最大寬度和自動邊距 */
+#chart {
+    max-width: 650px;
+    margin: 35px auto;
+}
+
+/* 設定選單的樣式 */
+#statusFilter {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 16px;
+}
