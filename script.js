@@ -65,28 +65,70 @@ $(document).ready(function() {
         }).addTo(map);
     }
 
-    // 初始化ApexCharts
-    var parkOptions = {
-        series: [],
-        chart: {
-            type: 'pie'
-        },
-        labels: [],
-        title: {
-            text: "公園狀態比例"
-        }
-    };
+
+	// 初始化ApexCharts
+	var parkOptions = {
+		series: [],
+		chart: {
+			type: 'donut',
+			height: '50%'
+			},
+			labels: [],
+			title: {
+				text: "公園狀態比例"
+				},
+				plotOptions: {
+					pie: {
+						donut: {
+							labels: {
+								show: true,
+								total: {
+									show: true,
+									label: '修復中',
+									formatter: function (w) {
+										// 計算修復中的數量
+										var total = w.globals.seriesTotals.reduce((a, b) => a + b, 0);
+										var repairing = w.globals.series[w.globals.labels.indexOf('修復中')];
+										return repairing
+										}
+										}
+										}
+										}
+										}
+										}
+										};																
     var neighborhoodParkOptions = {
-        series: [],
-        chart: {
-            type: 'pie'
-        },
-        labels: [],
-        title: {
-            text: "鄰里公園狀態比例"
-        }
-    };
-    var parkChart = new ApexCharts(document.querySelector("#park-chart"), parkOptions);
+		series: [],
+		chart: {
+			type: 'donut',
+			height: '50%'
+			},
+			labels: [],
+			title: {
+				text: "鄰里公園狀態比例"
+				},
+				plotOptions: {
+					pie: {
+						donut: {
+							labels: {
+								show: true,
+								total: {
+									show: true,
+									label: '修復中',
+									formatter: function (w) {
+										// 計算修復中的數量
+										var total = w.globals.seriesTotals.reduce((a, b) => a + b, 0);
+										var repairing = w.globals.series[w.globals.labels.indexOf('修復中')];
+										/*return repairing + ' / ' + total;*/
+										return repairing
+										}
+										}
+										}
+										}
+										}
+										}
+										};
+	var parkChart = new ApexCharts(document.querySelector("#park-chart"), parkOptions);
     var neighborhoodParkChart = new ApexCharts(document.querySelector("#neighborhood-park-chart"), neighborhoodParkOptions);
     parkChart.render();
     neighborhoodParkChart.render();

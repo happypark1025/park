@@ -12,19 +12,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="page1">
-        <div id="charts">
-            <div id="park-chart"></div>
-            <div id="neighborhood-park-chart"></div>
+    <div id="container">
+        <div id="page1" class="page">
+            <div id="charts">
+                <div id="park-chart"></div>
+                <div id="neighborhood-park-chart"></div>
+            </div>
+            <div id="map"></div>
+            <a href="#page2" class="scroll-arrow down-arrow">▼</a> <!-- 向下箭頭 -->
         </div>
-        <div id="map"></div>
-        <a href="#page2" class="scroll-arrow down-arrow">▼</a> <!-- 向下箭頭 -->
-    </div>
-    <div id="page2">
-        <a href="#page1" class="scroll-arrow up-arrow">▲</a> <!-- 向上箭頭 -->
-        <div id="park-list"></div>
+        <div id="page2" class="page">
+            <div id="park-list"></div>
+            <a href="#page1" class="scroll-arrow up-arrow">▲</a> <!-- 向上箭頭 -->
+        </div>
     </div>
     <script src="geojson_data.js"></script>
     <script src="script.js"></script>
+    <script src="navigation.js"></script> <!-- 引入導航腳本 -->
 </body>
 </html>

@@ -6,29 +6,26 @@ html {
 body, html {
     height: 100%;
     margin: 0;
-    padding: 1%; /* 保留5%的邊界留白 */
-    overflow: hidden;
+    padding: 1%; /* 保留1%的邊界留白 */
+    overflow: hidden; /* 隱藏溢出的內容 */
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     font-family: 'Arial', sans-serif;
     color: #333;
 }
 
-#page1, #page2 {
-    height: 99vh; /* 每頁高度為視窗高度的90%，考慮到5%的邊界留白 */
+#container {
+    height: 100%;
+    overflow-y: scroll; /* 允許垂直滾動 */
+    scroll-snap-type: y mandatory; /* 強制垂直滾動對齊 */
+}
+
+.page {
+    height: 99vh; /* 每頁高度為視窗高度的99%，考慮到1%的邊界留白 */
     display: flex;
     flex-direction: row;
+    scroll-snap-align: start; /* 滾動時對齊 */
 }
 
-#page1 {
-    overflow: hidden;
-}
-
-#page2 {
-    flex-direction: column;
-    overflow-y: auto;
-}
-
-/* 設定地圖和圖表的樣式 */
 #charts {
     flex: 1;
     display: flex;
@@ -36,6 +33,7 @@ body, html {
     justify-content: center;
     align-items: center;
     padding: 20px;
+    z-index: 1;
 }
 
 #park-chart, #neighborhood-park-chart {
@@ -47,6 +45,7 @@ body, html {
     flex: 2;
     height: 100%;
     width: 100%;
+    z-index: 0;
 }
 
 #park-list {
@@ -57,26 +56,56 @@ body, html {
 
 /* 響應式設計 */
 @media (max-width: 768px) {
-    #page1 {
+    #container {
+        overflow-y: hidden; /* 隱藏溢出的內容 */
+    }
+
+    .page {
         flex-direction: column;
+        height: 100vh; /* 每頁高度為視窗高度 */
+    }
+
+    #page1 {
+        display: flex;
+        flex-direction: column;
+        scroll-snap-type: y mandatory; /* 強制垂直滾動對齊 */
+        overflow-y: scroll; /* 允許垂直滾動 */
     }
 
     #charts {
-        height: 33.33vh; /* 在小屏幕上，圖表佔1/3高度 */
+        display: flex;
+        flex-direction: row; /* 圓餅圖橫向排列 */
         width: 100%;
+        height: 50vh; /* 圓餅圖佔滿上半部分 */
+        scroll-snap-align: start; /* 滾動時對齊 */
+    }
+
+    #park-chart, #neighborhood-park-chart {
+        display: flex;
+        flex-direction: column; /* 圖表與圖例上下排列 */
+        width: 50%; /* 每個圓餅圖佔一半寬度 */
+        height: 100%; /* 高度佔滿 */
     }
 
     #map {
-        height: 66.67vh; /* 在小屏幕上，地圖佔2/3高度 */
         width: 100%;
+        height: 50vh; /* 地圖佔滿下半部分 */
+        scroll-snap-align: start; /* 滾動時對齊 */
+    }
+
+    #page2 {
+        display: flex;
+        flex-direction: column;
+        scroll-snap-type: y mandatory; /* 強制垂直滾動對齊 */
+        overflow-y: scroll; /* 允許垂直滾動 */
     }
 }
 
 /* 設定箭頭圖示的樣式 */
 .scroll-arrow {
     position: fixed;
-    bottom: 5%; /* 距離底部5% */
-    right: 5%;  /* 距離右側5% */
+    bottom: 5%;
+    right: 5%;
     font-size: 1em;
     color: white;
     text-decoration: none;
